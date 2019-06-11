@@ -23,8 +23,10 @@ class Recaptcha extends Module
         $this->loadConfig('recaptcha');
 
         $this->recaptcha = new \ReCaptcha\ReCaptcha($this->getConfig('secret_key'));
-        // todo
-       // $this->recaptcha->setExpectedHostname(ARIKAIM_DOMAIN);
+        $expected_hostname = $this->getConfig('expected_hostname');
+        if (empty($expected_hostname) == false) {
+            $this->recaptcha->setExpectedHostname($expected_hostname);
+        }
     }
 
     public function boot()
