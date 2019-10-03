@@ -16,6 +16,7 @@ use Arikaim\Core\Packages\Module\Module;
  */
 class ReCaptcha extends Module
 {   
+    
     /**
      * Constructor
      */

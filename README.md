@@ -11,3 +11,4 @@ Arikaim CMS recaptcha module
 ```
 composer require arikaim/recaptcha-module
 ```
+
