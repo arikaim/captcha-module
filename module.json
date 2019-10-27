@@ -1,10 +1,11 @@
 {
     "title": "ReCaptcha",
-    "version": "1.0",
+    "version": "1.0.3",
     "class": "Recaptcha",
     "description": "ReCaptcha is a free CAPTCHA service that protects websites from spam and abuse",
     "type": "package",
     "category": "captcha",
+    "repository":"composer:arikaim/recaptcha-module",
     "requires": [
         "google/recaptcha"
     ],

@@ -21,13 +21,12 @@ class RecaptchaDriver implements DriverInterface,CaptchaInterface
 {   
     use Driver;
 
-    
     /**
      * Verification errors 
      *
      * @var array
      */
-    private $verify_errors;
+    private $verifyErrors;
 
     /**
      * Constructor
@@ -35,7 +34,7 @@ class RecaptchaDriver implements DriverInterface,CaptchaInterface
     public function __construct()
     {
         $this->setDriverParams('recaptcha','captcha','ReCaptcha','Driver for Goolge ReCaptcha service');
-        $this->verify_errors = [];
+        $this->verifyErrors = [];
     }
 
     /**
@@ -86,31 +85,31 @@ class RecaptchaDriver implements DriverInterface,CaptchaInterface
     /**
      * Verify captcha
      *
-     * @param mixed $captcha_response
-     * @param mixed $remote_ip
+     * @param mixed $captchaResponse
+     * @param mixed $remoteIp
      * @return bool
      */
-    public function verify($captcha_response, $remote_ip)
+    public function verify($captchaResponse, $remoteIp)
     {
         if (is_object($this->instance) == false) {
             return false;
         }
-        $this->verify_errors = [];
-        $response = $this->instance->verify($captcha_response,$remote_ip);
+        $this->verifyErrors = [];
+        $response = $this->instance->verify($captchaResponse,$remoteIp);
         if ($response->isSuccess() == true) {
             return true;
         }
-        $this->verify_errors = $response->getErrorCodes();
+        $this->verifyErrors = $response->getErrorCodes();
         return false;
     }
 
     /**
      * Get verification errors
      *
-     * @return array|null
+     * @return array
      */
     public function getErrors()
     {
-        return $this->verify_errors;
+        return $this->verifyErrors;
     }   
 }
