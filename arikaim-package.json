@@ -1,6 +1,8 @@
 {
     "title": "ReCaptcha",
-    "version": "1.0.3",
+    "name": "recaptcha",
+    "version": "1.0.4",
+    "package-type": "module",
     "class": "Recaptcha",
     "description": "ReCaptcha is a free CAPTCHA service that protects websites from spam and abuse",
     "type": "package",
