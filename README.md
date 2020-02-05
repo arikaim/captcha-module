@@ -14,10 +14,8 @@ Arikaim CMS Google recaptcha module
 
 
 
-#### Install
+#### Installation
 
-```bash
-
+```sh
 composer require arikaim/recaptcha-module
-
 ```

@@ -7,11 +7,11 @@
     "description": "ReCaptcha is a free CAPTCHA service that protects websites from spam and abuse",
     "type": "package",
     "category": "captcha",
-    "repository":"composer:arikaim/recaptcha-module",
-    "requires": [
-        "google/recaptcha"
-    ],
-    "help": {
-        "url": "https://www.google.com/recaptcha"
-    }    
+    "repository": "https://github.com/arikaim/recaptcha-module",
+    "require": {
+        "composer": [
+            "google/recaptcha"
+        ]
+    },
+    "help": "https://www.google.com/recaptcha"      
 }

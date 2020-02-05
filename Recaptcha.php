@@ -16,7 +16,6 @@ use Arikaim\Core\Extension\Module;
  */
 class ReCaptcha extends Module
 {   
-    
     /**
      * Constructor
      */
@@ -32,6 +31,7 @@ class ReCaptcha extends Module
     public function install()
     {
         $this->installDriver('Arikaim\\Modules\\Recaptcha\\RecaptchaDriver');
+        
         return true;
     }
 }
