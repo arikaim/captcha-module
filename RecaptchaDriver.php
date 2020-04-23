@@ -12,7 +12,7 @@ namespace Arikaim\Modules\Recaptcha;
 use Arikaim\Core\Arikaim;
 use Arikaim\Core\Driver\Traits\Driver;
 use Arikaim\Core\Interfaces\Driver\DriverInterface;
-use Arikaim\Extensions\Captcha\Interfaces\CaptchaInterface;
+use Arikaim\Modules\Recaptcha\CaptchaInterface;
 
 /**
  * Recaptcha driver class
