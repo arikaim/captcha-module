@@ -7,14 +7,14 @@
  * @license     http://www.arikaim.com/license
  * 
 */
-namespace Arikaim\Modules\Recaptcha;
+namespace Arikaim\Modules\Captcha;
 
 use Arikaim\Core\Extension\Module;
 
 /**
- * Recaptcha module class
+ * Captcha module class
  */
-class ReCaptcha extends Module
+class Captcha extends Module
 {   
     /**
      * Constructor
@@ -30,8 +30,6 @@ class ReCaptcha extends Module
      */
     public function install()
     {
-        $this->installDriver('Arikaim\\Modules\\Recaptcha\\RecaptchaDriver');
-        
-        return true;
+        $this->installDriver('Arikaim\\Modules\\Captcha\\Drivers\\RecaptchaDriver');
     }
 }

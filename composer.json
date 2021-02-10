@@ -1,7 +1,7 @@
 {
-    "name": "arikaim/recaptcha-module",
-    "description": "Arikam CMS ReCaptcha Module",
-    "keywords": ["Module", "Arikaim CMS ReCaptcha module"],
+    "name": "arikaim/captcha-module",
+    "description": "Arikam CMS captcha module",
+    "keywords": ["Module", "Arikaim CMS captcha module"],
     "type": "arikaim-module",
     "license": "GPL-3.0-or-later",
     "authors": [{
@@ -15,6 +15,6 @@
         "google/recaptcha": "1.2.*"
     },
     "extra": {
-        "path": "recaptcha"
+        "path": "captcha"
     }
 }

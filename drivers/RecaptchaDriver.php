@@ -7,26 +7,26 @@
  * @license     http://www.arikaim.com/license
  * 
 */
-namespace Arikaim\Modules\Recaptcha;
+namespace Arikaim\Modules\Captcha\Drivers;
 
 use Arikaim\Core\Arikaim;
 use Arikaim\Core\Driver\Traits\Driver;
 use Arikaim\Core\Interfaces\Driver\DriverInterface;
-use Arikaim\Modules\Recaptcha\CaptchaInterface;
+use Arikaim\Modules\Captcha\CaptchaInterface;
 
 /**
  * Recaptcha driver class
  */
-class RecaptchaDriver implements DriverInterface,CaptchaInterface
+class RecaptchaDriver implements DriverInterface, CaptchaInterface
 {   
     use Driver;
 
     /**
      * Verification errors 
      *
-     * @var array
+     * @var array|null
      */
-    private $verifyErrors;
+    private $errors = null;
 
     /**
      * Constructor
@@ -34,7 +34,7 @@ class RecaptchaDriver implements DriverInterface,CaptchaInterface
     public function __construct()
     {
         $this->setDriverParams('recaptcha','captcha','ReCaptcha','Driver for Goolge ReCaptcha service');
-        $this->verifyErrors = [];
+        $this->errors = [];
     }
 
     /**
@@ -85,25 +85,29 @@ class RecaptchaDriver implements DriverInterface,CaptchaInterface
     /**
      * Verify captcha
      *
-     * @param mixed $captchaResponse
-     * @param mixed $remoteIp
+     * @param \Psr\Http\Message\ServerRequestInterface $request    
+     * @param array|null $data
      * @return bool
      */
-    public function verify($captchaResponse, $remoteIp)
+    public function verify($request, ?array $data = null): bool
     {
-        if (is_object($this->instance) == false) {
+        if (\is_object($this->instance) == false) {
             return false;
         }
-        $this->verifyErrors = [];
+        $this->errors = [];
         
+        $captchaResponse = $data['g-recaptcha-response'] ?? null;
         if (empty($captchaResponse) == true) {
             return false;
         }
+        $remoteIp = $request->getAttribute('client_ip');
+
         $response = $this->instance->verify($captchaResponse,$remoteIp);
         if ($response->isSuccess() == true) {
             return true;
         }
-        $this->verifyErrors = $response->getErrorCodes();
+
+        $this->errors = $response->getErrorCodes();
         
         return false;
     }
@@ -113,7 +117,7 @@ class RecaptchaDriver implements DriverInterface,CaptchaInterface
      *
      * @return array
      */
-    public function getErrors()
+    public function getErrors(): ?array
     {
         return $this->verifyErrors;
     }   

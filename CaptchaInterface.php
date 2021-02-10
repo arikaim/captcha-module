@@ -7,7 +7,7 @@
  * @license     http://www.arikaim.com/license
  * 
 */
-namespace Arikaim\Modules\Recaptcha;
+namespace Arikaim\Modules\Captcha;
 
 /**
  * Captcha interface
@@ -17,16 +17,16 @@ interface CaptchaInterface
     /**
      * Verify captcha
      *
-     * @param mixed|null $captchaResponse
-     * @param mixed|null $remoteIp
+     * @param \Psr\Http\Message\ServerRequestInterface $request    
+     * @param array|null $data
      * @return bool
      */
-    public function verify($captchaResponse, $remoteIp);
+    public function verify($request, ?array $data = null): bool;
 
     /**
      * Get verification errors
      *
      * @return array|null
      */
-    public function getErrors();
+    public function getErrors(): ?array;
 }
