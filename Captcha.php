@@ -17,13 +17,6 @@ use Arikaim\Core\Extension\Module;
 class Captcha extends Module
 {   
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Install module
      *
      * @return void
