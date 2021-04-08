@@ -33,8 +33,7 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
      */
     public function __construct()
     {
-        $this->setDriverParams('recaptcha','captcha','ReCaptcha','Driver for Goolge ReCaptcha service');
-        $this->errors = [];
+        $this->setDriverParams('recaptcha','captcha','ReCaptcha','Driver for Goolge ReCaptcha service');      
     }
 
     /**
@@ -94,7 +93,7 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
         if (\is_object($this->instance) == false) {
             return false;
         }
-        $this->errors = [];
+        $this->errors = null;
         
         $captchaResponse = $data['g-recaptcha-response'] ?? null;
         if (empty($captchaResponse) == true) {
@@ -115,10 +114,10 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
     /**
      * Get verification errors
      *
-     * @return array
+     * @return array|null
      */
     public function getErrors(): ?array
     {
-        return $this->verifyErrors;
+        return $this->errors;
     }   
 }

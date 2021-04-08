@@ -1,7 +1,7 @@
 {
     "title": "Captcha",
     "name": "captcha",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "package-type": "module",
     "class": "Captcha",
     "description": "Captcha is a free CAPTCHA service that protects websites from spam and abuse",
