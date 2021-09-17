@@ -43,10 +43,15 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
      */
     public function initDriver($properties)
     {
-        $this->instance = new \ReCaptcha\ReCaptcha($properties->getValue('secret_key'));       
+        $secretKey = \trim($properties->getValue('secret_key',''));
+        $hostName = \trim($properties->getValue('expected_hostname',''));
+
+        $this->instance = new \ReCaptcha\ReCaptcha($secretKey);       
         if (empty($properties->getValue('expected_hostname')) == false) {
-            $this->instance->setExpectedHostname($properties->getValue('expected_hostname'));
+            $this->instance->setExpectedHostname($hostName);
         }        
+        
+        $this->clearErrors();
     }
 
     /**
@@ -93,7 +98,7 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
         if (\is_object($this->instance) == false) {
             return false;
         }
-        $this->errors = null;
+        $this->clearErrors();
         
         $captchaResponse = $data['g-recaptcha-response'] ?? null;
         if (empty($captchaResponse) == true) {
@@ -120,4 +125,14 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
     {
         return $this->errors;
     }   
+
+    /**
+     * Clear errors
+     *
+     * @return void
+     */
+    public function clearErrors(): void
+    {
+        $this->errors = null;
+    }
 }
