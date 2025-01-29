@@ -24,5 +24,6 @@ class Captcha extends Module
     public function install()
     {
         $this->installDriver('Arikaim\\Modules\\Captcha\\Drivers\\RecaptchaDriver');
+        $this->installDriver('Arikaim\\Modules\\Captcha\\Drivers\\CloudflareCaptchaDriver');
     }
 }

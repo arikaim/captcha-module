@@ -9,10 +9,10 @@
         "email": "info@arikaim.com",
         "homepage": "http://arikaim.com"
     }],
-    "require": {
-        "php": ">=7.1",
+    "require": {        
         "arikaim/installer": "*",
-        "google/recaptcha": "1.2.*"
+        "google/recaptcha": "1.2.*",
+        "usarise/turnstile": "^0.5"
     },
     "extra": {
         "path": "captcha"
