@@ -9,7 +9,6 @@
 */
 namespace Arikaim\Modules\Captcha\Drivers;
 
-use Arikaim\Core\Arikaim;
 use Arikaim\Core\Driver\Traits\Driver;
 use Arikaim\Core\Interfaces\Driver\DriverInterface;
 use Arikaim\Modules\Captcha\CaptchaInterface;
@@ -73,7 +72,7 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
         $properties->property('secret_key',function($property) {
             $property
                 ->title('Secret Key')
-                ->type('text')
+                ->type('key')
                 ->default('6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe')
                 ->required(true);
         });
@@ -95,7 +94,7 @@ class RecaptchaDriver implements DriverInterface, CaptchaInterface
      */
     public function verify($request, ?array $data = null): bool
     {
-        if (\is_object($this->instance) == false) {
+        if ($this->instance == null) {
             return false;
         }
         $this->clearErrors();

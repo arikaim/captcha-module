@@ -9,12 +9,15 @@
 */
 namespace Arikaim\Modules\Captcha\Drivers;
 
+use Turnstile\Error\Code;
+use Turnstile\Turnstile;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Psr7\HttpFactory;
+use Turnstile\Client\Client;
+
 use Arikaim\Core\Driver\Traits\Driver;
 use Arikaim\Core\Interfaces\Driver\DriverInterface;
 use Arikaim\Modules\Captcha\CaptchaInterface;
-
-use Turnstile\Error\Code;
-use Turnstile\Turnstile;
 
 /**
  * Cloudflare captcha driver class
@@ -45,14 +48,12 @@ class CloudflareCaptchaDriver implements DriverInterface, CaptchaInterface
      */
     public function initDriver($properties)
     {
-        global $arikaim;
-
-        $secretKey = \trim($properties->getValue('secret_key',''));
-     
-        $this->instance = new Turnstile(
-            $arikaim->get('http')->getAdapter(),
-            $secretKey,
+        $client = new Client(
+            new GuzzleHttpClient(),
+            new HttpFactory(),
         );
+        $secretKey = \trim($properties->getValue('secret_key',''));
+        $this->instance = new Turnstile($client,$secretKey);
       
         $this->clearErrors();
     }
